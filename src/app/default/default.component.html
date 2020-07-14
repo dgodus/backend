@@ -1,0 +1,14 @@
+<div class ="loading" *ngIf="!cars">
+    Cargando......
+
+</div>
+
+<div class="col-md-12"*ngIf="cars" > 
+
+
+<h2> {{title}} </h2>
+    <div *ngFor="let car of cars" >
+        {{car.title}}
+    </div>
+
+</div>

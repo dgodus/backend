@@ -1,0 +1,69 @@
+<!--CABECERA-->
+<header id="header">
+  
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">Egresados</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a [routerLink]="['']" class="nav-link" href="#">Inicio <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item active" *ngIf="identity">
+          <a class="nav-link" [routerLink]="['crear-nombre']">Crear Usuario <span class="sr-only" >(current)</span></a>
+        </li>
+        
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Dropdown
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="#">Action</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Something else here</a>
+          </div>
+        </li>
+        
+      </ul>
+      
+      
+      <ul class="nav navbar-nav navbar-right" *ngIf="!identity ">
+        <li>
+          
+          <button [routerLink]="['login']" type="button" class="btn btn-outline-primary">Identificate</button>
+
+        </li>
+        <li>
+          
+          <button [routerLink]="['registro']" type="button" class="btn btn-outline-primary">registro</button> 
+          
+        </li>
+
+      </ul>
+      
+      <ul class="nav navbar-nav navbar-right" *ngIf="identity ">
+        <li>
+          <a class="dropdown-item"> {{identity.name + ' ' + identity.surname}} </a>
+        </li>
+        <li>
+        
+            <a [routerLink]="['logout',1]" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Salir</a>
+        </li>
+        
+
+      </ul>
+
+    </div>
+  </nav>
+  
+
+  
+
+</header>
+<!--CONTENIDO-->
+<router-outlet></router-outlet>
+
