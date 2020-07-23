@@ -1,0 +1,68 @@
+<div class="col-md-12">
+    <h2>{{page_title}} </h2>
+    <div class="alert alert-success"*ngIf="status_experiencia_laborals =='success'">
+       Datos Personales  se ha guardado correctamtente!!
+
+    </div>
+
+    <div class="alert alert-danger"*ngIf="status_experiencia_laborals =='error'">
+        Datos Personales no se ha guardado correctamtente, intenta de Nuevo!!
+
+    </div>
+
+    <form #experNew="ngForm" (ngSubmit)="onSubmit(experNew)"class="col-md-5">
+      <p>
+          <label for="title"> Nombre de la Empresa</label>
+          <input type="text" name="experiencia_laboral_nombre_empresa" #experiencia_laboral_nombre_empresa="ngModel" [(ngModel)]="experiencia_laborals.experiencia_laboral_nombre_empresa" class="form-control"
+          required/>
+          <span *ngIf="!experiencia_laboral_nombre_empresa.valid && experiencia_laboral_nombre_empresa.touched">
+              el numero cel  no es valido o numero incorrecto
+
+          </span>
+
+      </p>
+      <p>
+        <label for="title"> Area que laboro</label>
+        <input type="text" name="experiencia_laboral_area" #experiencia_laboral_area="ngModel" [(ngModel)]="experiencia_laborals.experiencia_laboral_area" class="form-control"
+        required/>
+        <span *ngIf="!experiencia_laboral_area.valid && experiencia_laboral_area.touched">
+            el numero cel  no es valido o numero incorrecto
+
+        </span>
+
+    </p>
+    <p>
+        <label for="title"> Fecha que Inicio </label>
+        <input type="date" name="experiencia_laboral_fecha_inicio" #experiencia_laboral_fecha_inicio="ngModel" [(ngModel)]="experiencia_laborals.experiencia_laboral_fecha_inicio" class="form-control"
+        required/>
+        <span *ngIf="!experiencia_laboral_fecha_inicio.valid && experiencia_laboral_fecha_inicio.touched">
+            el numero cel  no es valido o numero incorrecto
+
+        </span>
+
+    </p>
+    <p>
+        <label for="title"> Fecha de termino</label>
+        <input type="date" name="experiencia_laboral_fecha_fin" #experiencia_laboral_fecha_fin="ngModel" [(ngModel)]="experiencia_laborals.experiencia_laboral_fecha_fin" class="form-control"
+        required/>
+        <span *ngIf="!experiencia_laboral_fecha_fin.valid && experiencia_laboral_fecha_fin.touched">
+            el numero cel  no es valido o numero incorrecto
+
+        </span>
+
+    </p>
+    
+    <p>
+        <label for="status"> ¿Aun existe la empresa?</label>
+        <select class="form-control" name="status" #status="ngModel"[(ngModel)]="experiencia_laborals.status"required>
+            <option value="true" selected="select">Si</option>
+            <option value="false">No</option>
+        </select>
+       
+    </p>
+    <input type="submit" value="Guardar" class="btn btn-success" [disabled]="!experNew.form.valid"  />
+
+    </form>
+
+</div>
+

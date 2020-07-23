@@ -1,34 +1,32 @@
 import { Component, OnInit } from '@angular/core';
 import { Router,ActivatedRoute, Params} from '@angular/router';
 import { UserService,  } from '../services/user.service';
-import {  NombService} from '../services/nomb.service';
-import { Car} from '../models/car';
-import { Route } from '@angular/compiler/src/core';
-import { convertPropertyBinding } from '@angular/compiler/src/compiler_util/expression_converter';
+import {  PersonaService} from '../services/persona.service';
+import { Persona} from '../models/personas';
 
 @Component({
-  selector: 'app-nom-new',
-  templateUrl: './nom-new.component.html',
-  styleUrls: ['./nom-new.component.css'],
-  providers: [UserService,NombService]
+  selector: 'app-person-new',
+  templateUrl: './person-new.component.html',
+  styleUrls: ['./person-new.component.css'],
+  providers: [UserService,PersonaService]
 })
-export class NomNewComponent implements OnInit {
+export class PersonNewComponent implements OnInit {
   public page_title: string;
   public identity;
   public token;
-  public car: Car;
-  public status_car : string;
+  public personas: Persona;
+  public status_personas : string;
 
 
   constructor(
     private _route: ActivatedRoute,
     private _router: Router,
     private _UserService: UserService,
-    private _nombService: NombService
+    private _personaService: PersonaService
 
 
   ) {
-    this.page_title = 'crear nuevo usuario';
+    this.page_title = 'Datos Personales';
     this.identity = this._UserService.getIdentity();
     this.token= this._UserService.getToken();
 
@@ -41,7 +39,7 @@ export class NomNewComponent implements OnInit {
 
     }else{
       //crear objeto usuariio
-      this.car = new Car(1,'', '', 1, '', null,null);
+      this.personas = new Persona(1,'', '', '', '', '', null,null);
         
 
     }
@@ -50,16 +48,19 @@ export class NomNewComponent implements OnInit {
 
   }
   onSubmit(form){
-    this._nombService.create(this.token, this.car).subscribe(
+    this._personaService.create(this.token, this.personas).subscribe(
       response =>{
         //console.log(response);
         if(response.status == 'success'){
-          this.car = response.car;
-          this.status_car = 'success';
-          this._router.navigate(['/home']);
+          this.personas = response.personas;
+          this.status_personas = 'success';
+
+
+          
+          this._router.navigate(['/vista-persona']);
 
         } else{
-          this.status_car = 'error';
+          this.status_personas = 'error';
 
         }
        // this.car = response.car;
@@ -67,7 +68,7 @@ export class NomNewComponent implements OnInit {
       },
       error => {
         console.log(<any>error);
-        this.status_car = 'error';
+        this.status_personas = 'error';
         
       }
 
@@ -75,4 +76,3 @@ export class NomNewComponent implements OnInit {
   }
 
 }
-

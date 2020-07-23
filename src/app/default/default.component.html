@@ -3,12 +3,42 @@
 
 </div>
 
-<div class="col-md-12"*ngIf="cars" > 
+<div class="col-md-12"*ngIf="cars "  > 
 
 
 <h2> {{title}} </h2>
-    <div *ngFor="let car of cars" >
-        {{car.title}}
-    </div>
+<br/>
+
+<table class="table table-hover table-stripped"  id="cars-list"  > 
+    <tr>
+        <th>Cursos</th>
+        <th>Precio</th>
+        <th>¿ Esta Disponible?</th>
+        <th>Acciones</th>
+    </tr>
+
+    <tr *ngFor="let car of cars" [value]="cars.id"  >
+        <td > 
+        <a [routerLink]="['/nombre', car.id] " > {{car.title}}  </a>
+    </td>
+    <td>
+        {{car.price}}
+    </td>
+    <td>
+        <span *ngIf="car.status == 'true'">
+            Si
+        </span>
+        <span *ngIf="car.status != 'true'">
+            No
+        </span>
+       
+    </td>
+    <td>
+        <a [routerLink]="['/editar-nombre', car.id]" class="btn btn-warning"> Editar</a>
+        
+        <a href="#" class="btn btn-danger"> Borrar</a>
+    </td>
+    </tr>
+</table>
 
 </div>

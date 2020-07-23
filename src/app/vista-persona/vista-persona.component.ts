@@ -4,37 +4,37 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Route } from '@angular/compiler/src/core';
 import { UserService } from '../services/user.service';
 import { User } from '../models/user';
-import { NombService } from '../services/nomb.service';
-import { Car } from '../models/car';
-
-//import { User} from '../../models/User';
+import {  PersonaService} from '../services/persona.service';
+import { Persona } from '../models/personas';
 
 @Component({
-  selector: 'app-default',
-  templateUrl: './default.component.html',
-  styleUrls: ['./default.component.css'],
-  providers : [UserService, NombService]
+  selector: 'app-vista-persona',
+  templateUrl: './vista-persona.component.html',
+  styleUrls: ['./vista-persona.component.css'],
+  providers: [UserService, PersonaService]
 })
-export class DefaultComponent implements OnInit {
+export class VistaPersonaComponent implements OnInit {
+
   public title: string;
-  public cars: Array<Car>;
+  public persona: Array<Persona>;
   public identity;
+ 
 
   constructor(
     private _route: ActivatedRoute,
     private _router: Router,
     private _userService: UserService,
-    private _nombService: NombService,
+    private _personaService: PersonaService
   ) {
-    this.title = 'Inicio';
+    this.title = 'Datos Personales';
    }
 
   ngOnInit() {
     console.log('defaul.component cargado correctamente');
-    this._nombService.getCars().subscribe(
+    this._personaService.getPersonas().subscribe(
       response =>{
         if(response.status =='success'){
-          this.cars = response.cars;
+          this.persona = response.persona;
 
         }
         //console.log(response);

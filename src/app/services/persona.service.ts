@@ -3,11 +3,11 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
 
 import {GLOBAL} from './global';
-import {Car} from '../models/car';
+import {Persona} from '../models/personas';
 
 @Injectable()
 
-export class NombService {
+export class PersonaService {
   public url: string;
     
 
@@ -20,8 +20,8 @@ export class NombService {
  pruebas(){
      return "hola mundo!!";
  }
-  create(token, car: Car): Observable<any>{
-   let json = JSON.stringify(car);
+  create(token, personas: Persona): Observable<any>{
+   let json = JSON.stringify(personas);
    let params ="json="+json;
 
 
@@ -29,18 +29,18 @@ export class NombService {
    let headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
                                   .set('Authorization', token) ;
 
-       return this._http.post(this.url + 'cars',params, {headers: headers});                           
+       return this._http.post(this.url + 'persona',params, {headers: headers});                           
  }
- getCars(): Observable<any>{
+ getPersonas(): Observable<any>{
   let headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded');
-   return this._http.get(this.url + 'cars', {headers: headers});
+   return this._http.get(this.url + 'persona', {headers: headers});
 
  }
  //getCars(): Observable<any>{
   // return this._http.get(this.url + 'cars', {headers: headers});
 // }
-getCar(id): Observable<any>{
-  return this._http.get(this.url + 'cars/' + id);
+getPersona(persona_id): Observable<any>{
+  return this._http.get(this.url + 'persona/' + persona_id);
 }
 
 }

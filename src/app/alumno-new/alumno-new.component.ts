@@ -1,34 +1,32 @@
 import { Component, OnInit } from '@angular/core';
 import { Router,ActivatedRoute, Params} from '@angular/router';
 import { UserService,  } from '../services/user.service';
-import {  NombService} from '../services/nomb.service';
-import { Car} from '../models/car';
-import { Route } from '@angular/compiler/src/core';
-import { convertPropertyBinding } from '@angular/compiler/src/compiler_util/expression_converter';
+import {  AlumnoService} from '../services/alumno.service';
+import { Alumno} from '../models/alumnos';
 
 @Component({
-  selector: 'app-nom-new',
-  templateUrl: './nom-new.component.html',
-  styleUrls: ['./nom-new.component.css'],
-  providers: [UserService,NombService]
+  selector: 'app-alumno-new',
+  templateUrl: './alumno-new.component.html',
+  styleUrls: ['./alumno-new.component.css'],
+  providers: [UserService,AlumnoService]
 })
-export class NomNewComponent implements OnInit {
+export class AlumnoNewComponent implements OnInit {
   public page_title: string;
   public identity;
   public token;
-  public car: Car;
-  public status_car : string;
+  public alumnos: Alumno;
+  public status_alumnos : string;
 
 
   constructor(
     private _route: ActivatedRoute,
     private _router: Router,
     private _UserService: UserService,
-    private _nombService: NombService
+    private _alumnoService: AlumnoService
 
 
   ) {
-    this.page_title = 'crear nuevo usuario';
+    this.page_title = 'Datos Alumno';
     this.identity = this._UserService.getIdentity();
     this.token= this._UserService.getToken();
 
@@ -41,7 +39,7 @@ export class NomNewComponent implements OnInit {
 
     }else{
       //crear objeto usuariio
-      this.car = new Car(1,'', '', 1, '', null,null);
+      this.alumnos = new Alumno(1,'', '', null,null);
         
 
     }
@@ -50,16 +48,16 @@ export class NomNewComponent implements OnInit {
 
   }
   onSubmit(form){
-    this._nombService.create(this.token, this.car).subscribe(
+    this._alumnoService.create(this.token, this.alumnos).subscribe(
       response =>{
         //console.log(response);
         if(response.status == 'success'){
-          this.car = response.car;
-          this.status_car = 'success';
-          this._router.navigate(['/home']);
+          this.alumnos = response.alumnos;
+          this.status_alumnos = 'success';
+          this._router.navigate(['/vista-persona']);
 
         } else{
-          this.status_car = 'error';
+          this.status_alumnos = 'error';
 
         }
        // this.car = response.car;
@@ -67,7 +65,7 @@ export class NomNewComponent implements OnInit {
       },
       error => {
         console.log(<any>error);
-        this.status_car = 'error';
+        this.status_alumnos = 'error';
         
       }
 
@@ -75,4 +73,3 @@ export class NomNewComponent implements OnInit {
   }
 
 }
-

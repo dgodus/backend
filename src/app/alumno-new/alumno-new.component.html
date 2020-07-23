@@ -1,0 +1,37 @@
+<div class="col-md-12">
+    <h2>{{page_title}} </h2>
+    <div class="alert alert-success"*ngIf="status_alumnos =='success'">
+       Datos Personales  se ha guardado correctamtente!!
+
+    </div>
+
+    <div class="alert alert-danger"*ngIf="status_alumnos =='error'">
+        Datos Personales no se ha guardado correctamtente, intenta de Nuevo!!
+
+    </div>
+
+    <form #alumNew="ngForm" (ngSubmit)="onSubmit(alumNew)"class="col-md-5">
+      <p>
+          <label for="title"> Cod Alumno</label>
+          <input type="text" name="alumno_cod" #alumno_cod="ngModel" [(ngModel)]="alumnos.alumno_cod" class="form-control"
+          required/>
+          <span *ngIf="!alumno_cod.valid && alumno_cod.touched">
+              el numero cel  no es valido o numero incorrecto
+
+          </span>
+
+      </p>
+    
+    <p>
+        <label for="status"> ¿esta disponible</label>
+        <select class="form-control" name="status" #status="ngModel"[(ngModel)]="alumnos.status"required>
+            <option value="true" selected="select">Si</option>
+            <option value="false">No</option>
+        </select>
+       
+    </p>
+    <input type="submit" value="Guardar" class="btn btn-success" [disabled]="!alumNew.form.valid"  />
+
+    </form>
+
+</div>

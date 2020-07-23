@@ -1,0 +1,48 @@
+<div class ="loading" *ngIf="!persona">
+    Cargando...... Datos Personales
+
+</div>
+
+<div class="col-md-12"*ngIf="persona"  > 
+
+
+<h2> {{title}} </h2>
+<br/>
+
+<table class="table table-hover table-stripped" persona_id="persona-list"  > 
+    <tr>
+        <th>Numero Celular</th>
+        <th>Sexo</th>
+        <th>DNI</th>
+        <th>¿ Estado actual del alumno?</th>
+        <th>Acciones</th>
+    </tr>
+
+    <tr *ngFor="let personas of persona"   >
+        <td > 
+        <a  > {{personas.persona_cel}}  </a>
+    </td>
+    <td>
+        {{personas.persona_genero}}
+    </td>
+    <td>
+        {{personas.persona_dni}}
+    </td>
+    <td>
+        <span *ngIf="personas.status == 'true'">
+            trabajando
+        </span>
+        <span *ngIf="personas.status != 'true'">
+            No
+        </span>
+       
+    </td>
+    <td>
+        <a  class="btn btn-warning"> Editar</a>
+        
+        <a href="#" class="btn btn-danger"> Borrar</a>
+    </td>
+    </tr>
+</table>
+
+</div>

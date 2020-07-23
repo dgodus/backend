@@ -1,1 +1,11 @@
-<p>nom-detail works!</p>
+<div class="col-md-12" *ngIf="car">
+    <h1>{{car.title}} </h1>
+    <p><strong *ngIf="car.status == 'true'">este curso esta disponible </strong></p>
+    <p>
+        {{car.price}} $  
+    </p>
+    <p>
+        {{car.description}}
+    </p>
+
+</div>

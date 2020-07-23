@@ -13,6 +13,10 @@ import { DefaultComponent } from './default/default.component';
 import { NomNewComponent } from './nom-new/nom-new.component';
 import { NomEditComponent } from './nom-edit/nom-edit.component';
 import { NomDetailComponent } from './nom-detail/nom-detail.component';
+import { PersonNewComponent } from './person-new/person-new.component';
+import { VistaPersonaComponent } from './vista-persona/vista-persona.component';
+import { AlumnoNewComponent } from './alumno-new/alumno-new.component';
+import { ExperiencialaboralNewComponent } from './experiencialaboral-new/experiencialaboral-new.component';
 
 
 
@@ -25,6 +29,10 @@ import { NomDetailComponent } from './nom-detail/nom-detail.component';
     NomNewComponent,
     NomEditComponent,
     NomDetailComponent,
+    PersonNewComponent,
+    VistaPersonaComponent,
+    AlumnoNewComponent,
+    ExperiencialaboralNewComponent,
     //FormsModule
   ],
   imports: [

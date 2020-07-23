@@ -49,7 +49,7 @@ export class UserService{
          this.identity = null;
      }
      return this.identity;
-
+ 
  }
  getToken(){
      let token = (localStorage.getItem('token'));

@@ -1,0 +1,70 @@
+<div class="col-md-12">
+    <h2>{{page_title}} </h2>
+    <div class="alert alert-success"*ngIf="status_personas =='success'">
+       Datos Personales  se ha guardado correctamtente!!
+
+    </div>
+
+    <div class="alert alert-danger"*ngIf="status_personas =='error'">
+        Datos Personales no se ha guardado correctamtente, intenta de Nuevo!!
+
+    </div>
+
+    <form #personNew="ngForm" (ngSubmit)="onSubmit(personNew)"class="col-md-5">
+      <p>
+          <label for="title"> Numero Celular</label>
+          <input type="text" name="persona_cel" #persona_cel="ngModel" [(ngModel)]="personas.persona_cel" class="form-control"
+          required/>
+          <span *ngIf="!persona_cel.valid && persona_cel.touched">
+              el numero cel  no es valido o numero incorrecto
+
+          </span>
+
+      </p>
+      <p>
+        <label for="title"> Sexo</label>
+        <input type="text" name="persona_genero" #persona_genero="ngModel" [(ngModel)]="personas.persona_genero" class="form-control"
+        required/>
+        <span *ngIf="!persona_genero.valid && persona_genero.touched">
+            ingrese su genero
+
+        </span>
+
+    </p>
+    <p>
+        <label for="title"> DNI</label>
+        <input type="text" name="persona_dni" #persona_dni="ngModel" [(ngModel)]="personas.persona_dni" class="form-control"
+        required/>
+        <span *ngIf="!persona_dni.valid && persona_dni.touched">
+            ingrese su Dni
+
+        </span>
+
+    </p>
+
+
+
+      <p>
+        <label for="description"> Descripcion</label>
+        <textarea  name="description" #description="ngModel" [(ngModel)]="personas.description" class="form-control"
+        required></textarea>
+        <span *ngIf="!description.valid && description.touched">
+            la Descripcion no es valido
+
+        </span>
+
+    </p>
+    
+    <p>
+        <label for="status"> ¿esta disponible</label>
+        <select class="form-control" name="status" #status="ngModel"[(ngModel)]="personas.status"required>
+            <option value="true" selected="select">Si</option>
+            <option value="false">No</option>
+        </select>
+       
+    </p>
+    <input type="submit" value="Guardar" class="btn btn-success" [disabled]="!personNew.form.valid"  />
+
+    </form>
+
+</div>
